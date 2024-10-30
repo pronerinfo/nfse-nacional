@@ -35,6 +35,8 @@ class Dps implements DpsInterface
      * @var Dom
      */
     protected $dom;
+    private string $dpsId;
+    private string $preId;
 
     /**
      * Constructor
@@ -766,6 +768,17 @@ class Dps implements DpsInterface
     //        }
     //        return true;
     //    }
+
+    public function getDpsId()
+    {
+        return $this->dpsId;
+    }
+
+    public function getEventoId()
+    {
+        return $this->preId;
+    }
+
     private function generateId()
     {
         $string = 'DPS';
@@ -779,6 +792,7 @@ class Dps implements DpsInterface
         $string .= str_pad($inscricao, 14, 0, STR_PAD_LEFT); //Inscrição Federal (14 - CPF completar com 000 à esquerda) +
         $string .= str_pad($this->std->infdps->serie, 5, 0, STR_PAD_LEFT); //Série DPS (5) +
         $string .= str_pad($this->std->infdps->ndps, 15, 0, STR_PAD_LEFT); //Série DPS (5) +
+        $this->dpsId = $string;
         return $string;
     }
 
@@ -788,6 +802,7 @@ class Dps implements DpsInterface
         $string .= $this->std->infpedreg->chnfse; //Chave de acesso da NFS-e (50) +
         $string .= $this->codigoEvento(); //Código do evento (6)
         $string .= str_pad($this->std->npedregevento, 3, 0, STR_PAD_LEFT); //Número do Pedido de Registro do Evento (nPedRegEvento) (3)
+        $this->preId = $string;
         return $string;
     }
 
