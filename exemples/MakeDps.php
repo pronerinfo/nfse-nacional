@@ -105,6 +105,9 @@ try {
     //        $std->infDPS->serv->cServ->cNBS = '';// Código NBS correspondente ao serviço prestado
     $std->infDPS->serv->cServ->cIntContrib = '1234';// Código interno do contribuinte - Utilizado para identificação da DPS no Sistema interno do Contribuinte
 
+//    $std->infDPS->serv->infoCompl = new stdClass();
+//    $std->infDPS->serv->infoCompl->xInfComp = 'Informações complementares';//Campo livre para preenchimento pelo contribuinte.
+
     $std->infDPS->valores = new stdClass();
     $std->infDPS->valores->vServPrest = new stdClass();
     //    $std->infDPS->valores->vServPrest->vReceb = 0.0; //Valor monetário recebido pelo intermediário do serviço (R$).

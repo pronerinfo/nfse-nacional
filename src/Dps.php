@@ -562,6 +562,19 @@ class Dps implements DpsInterface
         //TODO Fazer grupo explRod
         //TODO Fazer grupo infoCompl
 
+
+        if (isset($this->std->infdps->serv->infocompl->xinfcomp)) {
+            $infocompl_inner = $this->dom->createElement('infoCompl');
+            $serv_inner->appendChild($infocompl_inner);
+
+            $this->dom->addChild(
+                $cserv_inner,
+                'cTribNac',
+                $this->std->infdps->serv->infocompl->xinfcomp,
+                true
+            );
+        }
+
         $valores_inner = $this->dom->createElement('valores');
         $infdps_inner->appendChild($valores_inner);
         $vservprest_inner = $this->dom->createElement('vServPrest');
