@@ -23,12 +23,12 @@
   ],
   "minimum-stability": "dev",
   "require": {
-    "php": "^8.2",
-    "symfony/var-dumper": "^7.1",
+    "php": ">= 7.4",
+    "symfony/var-dumper": "^4.4.47",
     "tecnickcom/tcpdf": "^6.7",
     "nfephp-org/sped-common": "^5.1",
     "ext-dom": "*",
-    "nesbot/carbon": "^3.8",
+    "nesbot/carbon": "^2.73",
     "ext-curl": "*",
     "ext-zlib": "*",
     "ext-openssl": "*"
