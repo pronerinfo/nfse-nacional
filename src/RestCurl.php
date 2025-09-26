@@ -12,7 +12,7 @@ class RestCurl extends RestBase
 {
     const URL_HOMOLOGACAO = 'https://sefin.producaorestrita.nfse.gov.br/SefinNacional';
     const URL_PRODUCAO = 'https://sefin.nfse.gov.br/sefinnacional';
-    private mixed $config;
+    private object $config;
     private string $url_api;
     private $connection_timeout = 30;
     private $timeout = 30;
