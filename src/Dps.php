@@ -327,6 +327,7 @@ class Dps implements DpsInterface
             }
 
         }
+
         if (isset($this->std->infdps->toma)) {
             $toma_inner = $this->dom->createElement('toma');
             $infdps_inner->appendChild($toma_inner);
@@ -498,6 +499,7 @@ class Dps implements DpsInterface
                 true
             );
         }
+
         if (isset($this->std->infdps->serv->locprest->cpaisconsum)) {
             $this->dom->addChild(
                 $locprest_inner,
@@ -562,7 +564,6 @@ class Dps implements DpsInterface
         //TODO Fazer grupo explRod
         //TODO Fazer grupo infoCompl
 
-
         if (isset($this->std->infdps->serv->infocompl->xinfcomp)) {
             $infocompl_inner = $this->dom->createElement('infoCompl');
             $serv_inner->appendChild($infocompl_inner);
@@ -624,6 +625,272 @@ class Dps implements DpsInterface
             true
         );
 
+        if (isset($this->std->infdps->ibscbs)) {
+            $IBSCBS = $this->dom->createElement('IBSCBS');
+
+            $this->dom->addChild(
+                $IBSCBS,
+                'finNFSe',
+                $this->std->infdps->ibscbs->finnfse,
+                true
+            );
+
+            $this->dom->addChild(
+                $IBSCBS,
+                'indFinal',
+                $this->std->infdps->ibscbs->indfinal,
+                true
+            );
+
+            $this->dom->addChild(
+                $IBSCBS,
+                'cIndOp',
+                $this->std->infdps->ibscbs->cindop,
+                true
+            );
+
+            $this->dom->addChild(
+                $IBSCBS,
+                'tpOper',
+                $this->std->infdps->ibscbs->tpoper,
+                true
+            );
+
+            $this->dom->addChild(
+                $IBSCBS,
+                'tpEnteGov',
+                $this->std->infdps->ibscbs->tpentegov,
+                true
+            );
+
+            $this->dom->addChild(
+                $IBSCBS,
+                'indDest',
+                $this->std->infdps->ibscbs->inddest,
+                true
+            );
+
+            if (isset($this->std->infdps->ibscbs->valores)) {
+                $valores_ibscbs_inner = $this->dom->createElement('valores');
+
+                $this->dom->addChild(
+                    $valores_ibscbs_inner,
+                    'vBC',
+                    $this->std->infdps->ibscbs->valores->vbc,
+                    true
+                );
+
+                $this->dom->addChild(
+                    $valores_ibscbs_inner,
+                    'vCalcReeRepRes',
+                    $this->std->infdps->ibscbs->valores->vcalcreerepres,
+                    true
+                );
+
+                if (isset($this->std->infdps->ibscbs->valores->uf)) {
+                    $valores_ibscbs_uf_inner = $this->dom->createElement('uf');
+
+                    $this->dom->addChild(
+                        $valores_ibscbs_uf_inner,
+                        'pIBSUF',
+                        $this->std->infdps->ibscbs->valores->uf->pibsuf,
+                        true
+                    );
+
+                    $this->dom->addChild(
+                        $valores_ibscbs_uf_inner,
+                        'pRedAliqUF',
+                        $this->std->infdps->ibscbs->valores->uf->predaliquf,
+                        true
+                    );
+
+                    $this->dom->addChild(
+                        $valores_ibscbs_uf_inner,
+                        'pAliqEfetUF',
+                        $this->std->infdps->ibscbs->valores->uf->paliqefetuf,
+                        true
+                    );
+
+                    $valores_ibscbs_inner->appendChild($valores_ibscbs_uf_inner);
+                }
+
+                if (isset($this->std->infdps->ibscbs->valores->mun)) {
+                    $valores_ibscbs_mun_inner = $this->dom->createElement('mun');
+
+                    $this->dom->addChild(
+                        $valores_ibscbs_mun_inner,
+                        'pIBSMun',
+                        $this->std->infdps->ibscbs->valores->mun->pibsmun,
+                        true
+                    );
+
+                    $this->dom->addChild(
+                        $valores_ibscbs_mun_inner,
+                        'pRedAliqMun',
+                        $this->std->infdps->ibscbs->valores->mun->predaliqmun,
+                        true
+                    );
+
+                    $this->dom->addChild(
+                        $valores_ibscbs_mun_inner,
+                        'pAliqEfetMun',
+                        $this->std->infdps->ibscbs->valores->mun->paliqefetmun,
+                        true
+                    );
+
+                    $valores_ibscbs_inner->appendChild($valores_ibscbs_mun_inner);
+                }
+
+                if (isset($this->std->infdps->ibscbs->valores->fed)) {
+                    $valores_ibscbs_fed_inner = $this->dom->createElement('fed');
+
+                    $this->dom->addChild(
+                        $valores_ibscbs_fed_inner,
+                        'pCBS',
+                        $this->std->infdps->ibscbs->valores->fed->pcbs,
+                        true
+                    );
+
+                    $this->dom->addChild(
+                        $valores_ibscbs_fed_inner,
+                        'pRedAliqCBS',
+                        $this->std->infdps->ibscbs->valores->fed->predaliqcbs,
+                        true
+                    );
+
+                    $this->dom->addChild(
+                        $valores_ibscbs_fed_inner,
+                        'pAliqEfetCBS',
+                        $this->std->infdps->ibscbs->valores->fed->paliqefetcbs,
+                        true
+                    );
+
+                    $valores_ibscbs_inner->appendChild($valores_ibscbs_fed_inner);
+                }
+
+                if (isset($this->std->infdps->ibscbs->valores->gibscbs)) {
+                    $valores_ibscbs_trib_inner = $this->dom->createElement('trib');
+
+                    $valores_ibscbs_gIBSCBS_inner = $this->dom->createElement('gIBSCBS');
+
+                    $this->dom->addChild(
+                        $valores_ibscbs_gIBSCBS_inner,
+                        'CST',
+                        $this->std->infdps->ibscbs->valores->gibscbs->cst,
+                        true
+                    );
+
+                    $this->dom->addChild(
+                        $valores_ibscbs_gIBSCBS_inner,
+                        'cClassTrib',
+                        $this->std->infdps->ibscbs->valores->gibscbs->cclasstrib,
+                        true
+                    );
+
+                    $this->dom->addChild(
+                        $valores_ibscbs_gIBSCBS_inner,
+                        'cCredPres',
+                        $this->std->infdps->ibscbs->valores->gibscbs->ccredpres,
+                        true
+                    );
+
+                    $valores_ibscbs_trib_inner->appendChild($valores_ibscbs_gIBSCBS_inner);
+
+                    $valores_ibscbs_inner->appendChild($valores_ibscbs_trib_inner);
+                }
+
+                $IBSCBS->appendChild($valores_ibscbs_inner);
+
+                if (isset($this->std->infdps->ibscbs->totcibs)) {
+                    $valores_totCIBS_inner = $this->dom->createElement('totCIBS');
+
+                    $this->dom->addChild(
+                        $valores_totCIBS_inner,
+                        'vTotNF',
+                        $this->std->infdps->ibscbs->totcibs->vtotnf,
+                        true
+                    );
+
+                    if (isset($this->std->infdps->ibscbs->totcibs->gibs)) {
+                        $valores_totCIBS_gIBS_inner = $this->dom->createElement('gIBS');
+
+                        $this->dom->addChild(
+                            $valores_totCIBS_gIBS_inner,
+                            'vIBSTot',
+                            $this->std->infdps->ibscbs->totcibs->gibs->vibstot,
+                            true
+                        );
+
+                        if (isset($this->std->infdps->ibscbs->totcibs->gibs->gibsuftot)) {
+                            $valores_totCIBS_gIBS_gIBSUFTot_inner = $this->dom->createElement('gIBSUFTot');
+
+                            $this->dom->addChild(
+                                $valores_totCIBS_gIBS_gIBSUFTot_inner,
+                                'vDifUF',
+                                $this->std->infdps->ibscbs->totcibs->gibs->gibsuftot->vdifuf,
+                                true
+                            );
+
+                            $this->dom->addChild(
+                                $valores_totCIBS_gIBS_gIBSUFTot_inner,
+                                'vIBSUF',
+                                $this->std->infdps->ibscbs->totcibs->gibs->gibsuftot->vibsuf,
+                                true
+                            );
+
+                            $valores_totCIBS_gIBS_inner->appendChild($valores_totCIBS_gIBS_gIBSUFTot_inner);
+                        }
+
+                        if (isset($this->std->infdps->ibscbs->totcibs->gibs->gibsmuntot)) {
+                            $valores_totCIBS_gIBS_gIBSMunTot_inner = $this->dom->createElement('gIBSMunTot');
+
+                            $this->dom->addChild(
+                                $valores_totCIBS_gIBS_gIBSMunTot_inner,
+                                'vDifMun',
+                                $this->std->infdps->ibscbs->totcibs->gibs->gibsmuntot->vdifmun,
+                                true
+                            );
+
+                            $this->dom->addChild(
+                                $valores_totCIBS_gIBS_gIBSMunTot_inner,
+                                'vIBSMun',
+                                $this->std->infdps->ibscbs->totcibs->gibs->gibsmuntot->vibsmun,
+                                true
+                            );
+
+                            $valores_totCIBS_gIBS_inner->appendChild($valores_totCIBS_gIBS_gIBSMunTot_inner);
+                        }
+
+                        $valores_totCIBS_inner->appendChild($valores_totCIBS_gIBS_inner);
+
+                    }
+
+                    if (isset($this->std->infdps->ibscbs->totcibs->gcbs)) {
+                        $valores_totCIBS_gCBS_inner = $this->dom->createElement('gCBS');
+
+                        $this->dom->addChild(
+                            $valores_totCIBS_gCBS_inner,
+                            'vDifCBS',
+                            $this->std->infdps->ibscbs->totcibs->gcbs->vdifcbs,
+                            true
+                        );
+
+                        $this->dom->addChild(
+                            $valores_totCIBS_gCBS_inner,
+                            'vCBS',
+                            $this->std->infdps->ibscbs->totcibs->gcbs->vcbs,
+                            true
+                        );
+
+                        $valores_totCIBS_inner->appendChild($valores_totCIBS_gCBS_inner);
+                    }
+
+                    $IBSCBS->appendChild($valores_totCIBS_inner);
+                }
+            }
+
+            $infdps_inner->appendChild($IBSCBS);
+        }
 
         $dps = $this->dom->createElement('DPS');
         $dps->setAttribute('versao', '1.00');
