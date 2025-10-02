@@ -33,7 +33,7 @@ class RestCurl extends RestBase
         $this->certificate = $cert;
         //        $this->wsobj = $this->loadWsobj($this->config->cmun);
         $this->url_api = self::URL_HOMOLOGACAO;
-        if ($this->config->tpamb === 1) {
+        if ($this->config->tpamb == 1) {
             $this->url_api = self::URL_PRODUCAO;
         }
     }
