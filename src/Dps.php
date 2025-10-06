@@ -591,39 +591,226 @@ class Dps implements DpsInterface
         //TODO Fazer grupo vDescCondIncond
         //TODO Fazer grupo vDedRed
 
-        $trib_inner = $this->dom->createElement('trib');
-        $valores_inner->appendChild($trib_inner);
+        if (isset($this->std->infdps->valores->trib)) {
+            $trib_inner = $this->dom->createElement('trib');
+            $valores_inner->appendChild($trib_inner);
 
-        $tribmun_inner = $this->dom->createElement('tribMun');
-        $trib_inner->appendChild($tribmun_inner);
+            if (isset($this->std->infdps->valores->trib->tribmun)) {
+                $tribmun_inner = $this->dom->createElement('tribMun');
+                $trib_inner->appendChild($tribmun_inner);
 
-        $this->dom->addChild(
-            $tribmun_inner,
-            'tribISSQN',
-            $this->std->infdps->valores->trib->tribmun->tribissqn,
-            true
-        );
-        if (isset($this->std->infdps->valores->trib->tribmun->tpretissqn)) {
-            $this->dom->addChild(
-                $tribmun_inner,
-                'tpRetISSQN',
-                $this->std->infdps->valores->trib->tribmun->tpretissqn,
-                true
-            );
+                $this->dom->addChild(
+                    $tribmun_inner,
+                    'tribISSQN',
+                    $this->std->infdps->valores->trib->tribmun->tribissqn,
+                    true
+                );
+                if (isset($this->std->infdps->valores->trib->tribmun->tpretissqn)) {
+                    $this->dom->addChild(
+                        $tribmun_inner,
+                        'tpRetISSQN',
+                        $this->std->infdps->valores->trib->tribmun->tpretissqn,
+                        true
+                    );
+                }
+
+                if (isset($this->std->infdps->valores->trib->tribmun->paliq)) {
+                    $this->dom->addChild(
+                        $tribmun_inner,
+                        'pAliq',
+                        $this->std->infdps->valores->trib->tribmun->paliq,
+                        true
+                    );
+                }
+            }
+
+            if (isset($this->std->infdps->valores->trib->tribfed)) {
+                $tribfed_inner = $this->dom->createElement('tribFed');
+                $trib_inner->appendChild($tribfed_inner);
+
+                if (isset($this->std->infdps->valores->trib->tribfed->piscofins)) {
+                    $piscofins_inner = $this->dom->createElement('piscofins');
+                    $tribfed_inner->appendChild($piscofins_inner);
+
+                    if (isset($this->std->infdps->valores->trib->tribfed->piscofins->cst)) {
+                        $this->dom->addChild(
+                            $piscofins_inner,
+                            'CST',
+                            $this->std->infdps->valores->trib->tribfed->piscofins->cst,
+                            true
+                        );
+                    }
+
+                    if (isset($this->std->infdps->valores->trib->tribfed->piscofins->vbcpiscofins)) {
+                        $this->dom->addChild(
+                            $piscofins_inner,
+                            'vBCPisCofins',
+                            $this->std->infdps->valores->trib->tribfed->piscofins->vbcpiscofins,
+                            true
+                        );
+                    }
+
+                    if (isset($this->std->infdps->valores->trib->tribfed->piscofins->paliqpis)) {
+                        $this->dom->addChild(
+                            $piscofins_inner,
+                            'pAliqPis',
+                            $this->std->infdps->valores->trib->tribfed->piscofins->paliqpis,
+                            true
+                        );
+                    }
+
+                    if (isset($this->std->infdps->valores->trib->tribfed->piscofins->paliqcofins)) {
+                        $this->dom->addChild(
+                            $piscofins_inner,
+                            'pAliqCofins',
+                            $this->std->infdps->valores->trib->tribfed->piscofins->paliqcofins,
+                            true
+                        );
+                    }
+
+                    if (isset($this->std->infdps->valores->trib->tribfed->piscofins->vpis)) {
+                        $this->dom->addChild(
+                            $piscofins_inner,
+                            'vPis',
+                            $this->std->infdps->valores->trib->tribfed->piscofins->vpis,
+                            true
+                        );
+                    }
+
+                    if (isset($this->std->infdps->valores->trib->tribfed->piscofins->vcofins)) {
+                        $this->dom->addChild(
+                            $piscofins_inner,
+                            'vCofins',
+                            $this->std->infdps->valores->trib->tribfed->piscofins->vcofins,
+                            true
+                        );
+                    }
+
+                    if (isset($this->std->infdps->valores->trib->tribfed->piscofins->tpretpiscofins)) {
+                        $this->dom->addChild(
+                            $piscofins_inner,
+                            'tpRetPisCofins',
+                            $this->std->infdps->valores->trib->tribfed->piscofins->tpretpiscofins,
+                            true
+                        );
+                    }
+                }
+
+                if (isset($this->std->infdps->valores->trib->tribfed->vretcp)) {
+                    $this->dom->addChild(
+                        $tribfed_inner,
+                        'vRetCP',
+                        $this->std->infdps->valores->trib->tribfed->vretcp,
+                        true
+                    );
+                }
+
+                if (isset($this->std->infdps->valores->trib->tribfed->vretirrf)) {
+                    $this->dom->addChild(
+                        $tribfed_inner,
+                        'vRetIRRF',
+                        $this->std->infdps->valores->trib->tribfed->vretirrf,
+                        true
+                    );
+                }
+
+                if (isset($this->std->infdps->valores->trib->tribfed->vretcsll)) {
+                    $this->dom->addChild(
+                        $tribfed_inner,
+                        'vRetCSLL',
+                        $this->std->infdps->valores->trib->tribfed->vretcsll,
+                        true
+                    );
+                }
+            }
+
+            if (isset($this->std->infdps->valores->trib->tottrib)) {
+                $tottrib_inner = $this->dom->createElement('totTrib');
+                $trib_inner->appendChild($tottrib_inner);
+
+                if (isset($this->std->infdps->valores->trib->tottrib->vtottrib)) {
+                    $vTotTrib_inner = $this->dom->createElement('vTotTrib');
+                    $tottrib_inner->appendChild($vTotTrib_inner);
+
+                    if (isset($this->std->infdps->valores->trib->tottrib->vtottrib->vtottribfed)) {
+                        $this->dom->addChild(
+                            $vTotTrib_inner,
+                            'vTotTribFed',
+                            $this->std->infdps->valores->trib->tottrib->vtottrib->vtottribfed,
+                            true
+                        );
+                    }
+
+                    if (isset($this->std->infdps->valores->trib->tottrib->vtottrib->vtottribest)) {
+                        $this->dom->addChild(
+                            $vTotTrib_inner,
+                            'vTotTribEst',
+                            $this->std->infdps->valores->trib->tottrib->vtottrib->vtottribest,
+                            true
+                        );
+                    }
+
+                    if (isset($this->std->infdps->valores->trib->tottrib->vtottrib->vtottribmun)) {
+                        $this->dom->addChild(
+                            $vTotTrib_inner,
+                            'vTotTribMun',
+                            $this->std->infdps->valores->trib->tottrib->vtottrib->vtottribmun,
+                            true
+                        );
+                    }
+                }
+
+                if (isset($this->std->infdps->valores->trib->tottrib->ptottrib)) {
+                    $pTotTrib_inner = $this->dom->createElement('pTotTrib');
+                    $tottrib_inner->appendChild($pTotTrib_inner);
+
+                    if (isset($this->std->infdps->valores->trib->tottrib->ptottrib->ptottribfed)) {
+                        $this->dom->addChild(
+                            $pTotTrib_inner,
+                            'pTotTribFed',
+                            $this->std->infdps->valores->trib->tottrib->ptottrib->ptottribfed,
+                            true
+                        );
+                    }
+
+                    if (isset($this->std->infdps->valores->trib->tottrib->ptottrib->ptottribest)) {
+                        $this->dom->addChild(
+                            $pTotTrib_inner,
+                            'pTotTribEst',
+                            $this->std->infdps->valores->trib->tottrib->ptottrib->ptottribest,
+                            true
+                        );
+                    }
+
+                    if (isset($this->std->infdps->valores->trib->tottrib->ptottrib->ptottribmun)) {
+                        $this->dom->addChild(
+                            $pTotTrib_inner,
+                            'pTotTribMun',
+                            $this->std->infdps->valores->trib->tottrib->ptottrib->ptottribmun,
+                            true
+                        );
+                    }
+                }
+
+                if (isset($this->std->infdps->valores->trib->tottrib->indtottrib)) {
+                    $this->dom->addChild(
+                        $tottrib_inner,
+                        'indTotTrib',
+                        $this->std->infdps->valores->trib->tottrib->indtottrib,
+                        true
+                    );
+                }
+
+                if (isset($this->std->infdps->valores->trib->tottrib->ptottribsn)) {
+                    $this->dom->addChild(
+                        $tottrib_inner,
+                        'pTotTribSN',
+                        $this->std->infdps->valores->trib->tottrib->ptottribsn,
+                        true
+                    );
+                }
+            }
         }
-
-        //TODO Fazer grupo tribFed
-
-
-        $tottrib_inner = $this->dom->createElement('totTrib');
-        $trib_inner->appendChild($tottrib_inner);
-
-        $this->dom->addChild(
-            $tottrib_inner,
-            'indTotTrib',
-            $this->std->infdps->valores->trib->tottrib->indtottrib,
-            true
-        );
 
         if (isset($this->std->infdps->ibscbs)) {
             $IBSCBS = $this->dom->createElement('IBSCBS');
