@@ -18,7 +18,7 @@ class Tools extends RestCurl
         $retorno = $this->getData($operacao);
 
         if (isset($retorno['erro'])) {
-            throw new \Exception($retorno['erro']);
+            throw new \Exception($retorno['erro']['descricao']);
         }
         if ($retorno) {
             $base_decode = base64_decode($retorno['nfseXmlGZipB64']);
@@ -38,7 +38,7 @@ class Tools extends RestCurl
         $retorno = $this->getData($operacao);
 
         if (isset($retorno['erro'])) {
-            throw new \Exception($retorno['erro']);
+            throw new \Exception($retorno['erro']['descricao']);
         }
         if ($retorno) {
             return $retorno;
@@ -61,7 +61,7 @@ class Tools extends RestCurl
         }
         $retorno = $this->getData($operacao);
         if (isset($retorno['erro'])) {
-            throw new \Exception($retorno['erro']);
+            throw new \Exception($retorno['erro']['descricao']);
         }
         if ($retorno) {
             return $retorno;
