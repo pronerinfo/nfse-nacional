@@ -39,7 +39,7 @@ class RestCurl extends RestBase
         }
     }
 
-    public function getData($download = false, $operacao, $data = null)
+    public function getData($operacao, $download = false, $data = null)
     {
         if ($download) {
             $this->url_api = self::URL_DOWNLOAD;

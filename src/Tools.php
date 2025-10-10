@@ -20,6 +20,7 @@ class Tools extends RestCurl
         if (isset($retorno['erro'])) {
             throw new \Exception($retorno['erro']);
         }
+        error_log(json_encode($retorno));
         if ($retorno) {
             $base_decode = base64_decode($retorno['nfseXmlGZipB64']);
             $gz_decode = gzdecode($base_decode);
@@ -73,7 +74,7 @@ class Tools extends RestCurl
     public function consultarDanfse($chave)
     {
         $operacao = 'danfse/' . $chave;
-        return $this->getData(true, $operacao);
+        return $this->getData($operacao, true);
     }
 
     public function enviaDps($content)
