@@ -18,24 +18,38 @@ class Tools extends RestCurl
         $retorno = $this->getData($operacao);
 
         if (isset($retorno['erro'])) {
-            return $retorno;
+            throw new \Exception($retorno['erro']);
         }
         if ($retorno) {
             $base_decode = base64_decode($retorno['nfseXmlGZipB64']);
             $gz_decode = gzdecode($base_decode);
             return mb_convert_encoding($gz_decode, 'ISO-8859-1', 'UTF-8');
         }
+
         return null;
     }
 
+    /**
+     * @throws \Exception
+     */
     public function consultarDpsChave($chave)
     {
         $operacao = 'dps/' . $chave;
         $retorno = $this->getData($operacao);
 
-        return $retorno;
+        if (isset($retorno['erro'])) {
+            throw new \Exception($retorno['erro']);
+        }
+        if ($retorno) {
+            return $retorno;
+        }
+
+        return null;
     }
 
+    /**
+     * @throws \Exception
+     */
     public function consultarNfseEventos($chave, $tipoEvento = null, $nSequencial = null)
     {
         $operacao = 'nfse/' . $chave . '/eventos';
@@ -46,20 +60,20 @@ class Tools extends RestCurl
             $operacao .= '/' . $nSequencial;
         }
         $retorno = $this->getData($operacao);
-        return $retorno;
+        if (isset($retorno['erro'])) {
+            throw new \Exception($retorno['erro']);
+        }
+        if ($retorno) {
+            return $retorno;
+        }
+
+        return null;
     }
 
     public function consultarDanfse($chave)
     {
         $operacao = 'danfse/' . $chave;
-        $retorno = $this->getData($operacao);
-        if (isset($retorno['erro'])) {
-            return $retorno;
-        }
-        if ($retorno) {
-            return $retorno;
-        }
-        return null;
+        return $this->getData(true, $operacao);
     }
 
     public function enviaDps($content)
@@ -67,15 +81,18 @@ class Tools extends RestCurl
         //$content = $this->canonize($content);
         $content = $this->sign($content, 'infDPS', '', 'DPS');
         $content = '<?xml version="1.0" encoding="UTF-8"?>' . $content;
+
         $gz = gzencode($content);
         $data = base64_encode($gz);
         $dados = [
             'dpsXmlGZipB64' => $data
         ];
-        $retorno = $this->postData('nfse', json_encode($dados));
-        return $retorno;
+        return $this->postData('nfse', json_encode($dados));
     }
 
+    /**
+     * @throws \DOMException
+     */
     public function cancelaNfse($std)
     {
         $dps = new \Hadder\NfseNacional\Dps($std);
@@ -90,7 +107,13 @@ class Tools extends RestCurl
         ];
         $operacao = 'nfse/' . $std->infPedReg->chNFSe . '/eventos';
         $retorno = $this->postData($operacao, json_encode($dados));
-        return $retorno;
+        if (isset($retorno['erro'])) {
+            throw new \Exception($retorno['erro']);
+        }
+        if ($retorno) {
+            return $retorno;
+        }
+        return null;
     }
 
     protected function canonize($content)

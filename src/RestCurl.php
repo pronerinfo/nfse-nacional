@@ -12,6 +12,7 @@ class RestCurl extends RestBase
 {
     const URL_HOMOLOGACAO = 'https://sefin.producaorestrita.nfse.gov.br/SefinNacional';
     const URL_PRODUCAO = 'https://sefin.nfse.gov.br/sefinnacional';
+    const URL_DOWNLOAD = 'https://adn.nfse.gov.br';
     private object $config;
     private string $url_api;
     private $connection_timeout = 30;
@@ -38,8 +39,12 @@ class RestCurl extends RestBase
         }
     }
 
-    public function getData($operacao, $data = null)
+    public function getData($download = false, $operacao, $data = null)
     {
+        if ($download) {
+            $this->url_api = self::URL_DOWNLOAD;
+        }
+        
         $this->saveTemporarilyKeyFiles();
         try {
             $msgSize = $data ? strlen($data) : 0;
