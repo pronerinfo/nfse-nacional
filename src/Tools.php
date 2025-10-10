@@ -20,7 +20,6 @@ class Tools extends RestCurl
         if (isset($retorno['erro'])) {
             throw new \Exception($retorno['erro']);
         }
-        error_log(json_encode($retorno));
         if ($retorno) {
             $base_decode = base64_decode($retorno['nfseXmlGZipB64']);
             $gz_decode = gzdecode($base_decode);
