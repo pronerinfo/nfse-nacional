@@ -10,10 +10,11 @@ use NFePHP\Common\Signer;
 
 class RestCurl extends RestBase
 {
-    const URL_HOMOLOGACAO = 'https://sefin.producaorestrita.nfse.gov.br/SefinNacional';
-    const URL_PRODUCAO = 'https://sefin.nfse.gov.br/sefinnacional';
-    const URL_DOWNLOAD = 'https://adn.nfse.gov.br';
-    private object $config;
+    const URL_SEFIN_HOMOLOGACAO = 'https://sefin.producaorestrita.nfse.gov.br/SefinNacional';
+    const URL_SEFIN_PRODUCAO = 'https://sefin.nfse.gov.br/sefinnacional';
+    const URL_ADN_HOMOLOGACAO = 'https://adn.producaorestrita.nfse.gov.br';
+    const URL_ADN_PRODUCAO = 'https://adn.nfse.gov.br';
+    private mixed $config;
     private string $url_api;
     private $connection_timeout = 30;
     private $timeout = 30;
@@ -33,18 +34,17 @@ class RestCurl extends RestBase
         $this->config = json_decode($config);
         $this->certificate = $cert;
         //        $this->wsobj = $this->loadWsobj($this->config->cmun);
-        $this->url_api = self::URL_HOMOLOGACAO;
-        if ($this->config->tpamb == 1) {
-            $this->url_api = self::URL_PRODUCAO;
-        }
     }
 
-    public function getData($operacao, $download = false, $data = null)
+    /**
+     * @param $operacao
+     * @param $data
+     * @param $origem - URL de consulta 1 = Sefin (emissão), 2 = ADN (DANFSe)
+     * @return mixed|string
+     */
+    public function getData($operacao, $data = null, $origem = 1)
     {
-        if ($download) {
-            $this->url_api = self::URL_DOWNLOAD;
-        }
-        
+        $this->resolveUrl($origem);
         $this->saveTemporarilyKeyFiles();
         try {
             $msgSize = $data ? strlen($data) : 0;
@@ -95,7 +95,6 @@ class RestCurl extends RestBase
             $headsize = curl_getinfo($oCurl, CURLINFO_HEADER_SIZE);
             $httpcode = curl_getinfo($oCurl, CURLINFO_HTTP_CODE);
             $contentType = curl_getinfo($oCurl, CURLINFO_CONTENT_TYPE);
-            curl_close($oCurl);
             $this->responseHead = trim(substr($response, 0, $headsize));
             $this->responseBody = trim(substr($response, $headsize));
             if ($contentType == 'application/pdf') {
@@ -108,9 +107,15 @@ class RestCurl extends RestBase
         }
     }
 
-    public function postData($operacao, $data)
+    /**
+     * @param $operacao
+     * @param $data
+     * @param int $origem - URL de consulta 1 = Sefin (emissão), 2 = ADN (DANFSe)
+     * @return mixed|string
+     */
+    public function postData($operacao, $data, int $origem = 1)
     {
-        //        dd($data);
+        $this->resolveUrl($origem);
         $this->saveTemporarilyKeyFiles();
         try {
             $msgSize = $data ? strlen($data) : 0;
@@ -198,5 +203,25 @@ class RestCurl extends RestBase
             $rootname
         );
         return $xml;
+    }
+
+    private function resolveUrl(int $origem = 0)
+    {
+        switch ($origem) {
+            case 1: // SEFIN
+            default:
+                $this->url_api = self::URL_SEFIN_HOMOLOGACAO;
+                if ($this->config->tpamb === 1) {
+                    $this->url_api = self::URL_SEFIN_PRODUCAO;
+                }
+                break;
+            case 2: // ADN
+                $this->url_api = self::URL_ADN_HOMOLOGACAO;
+                if ($this->config->tpamb === 1) {
+                    $this->url_api = self::URL_ADN_PRODUCAO;
+                }
+                break;
+        }
+
     }
 }
