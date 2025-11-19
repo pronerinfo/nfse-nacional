@@ -993,41 +993,45 @@ class Dps implements DpsInterface
                     );
                 }
 
-                $ibscbs_valores_trib_gtribregular_inner = $this->dom->createElement('gTribRegular');
-                $ibscbs_valores_trib_inner->appendChild($ibscbs_valores_trib_gtribregular_inner);
-                $this->dom->addChild(
-                    $ibscbs_valores_trib_gtribregular_inner,
-                    'CSTReg',
-                    $this->std->infdps->ibscbs->valores->trib->gtribregular->cstreg,
-                    true
-                );
-                $this->dom->addChild(
-                    $ibscbs_valores_trib_gtribregular_inner,
-                    'cClassTribReg',
-                    $this->std->infdps->ibscbs->valores->trib->gtribregular->cclasstribreg,
-                    true
-                );
+                if (isset($this->std->infdps->ibscbs->valores->trib->gtribregular)) {
+                    $ibscbs_valores_trib_gtribregular_inner = $this->dom->createElement('gTribRegular');
+                    $ibscbs_valores_trib_inner->appendChild($ibscbs_valores_trib_gtribregular_inner);
+                    $this->dom->addChild(
+                        $ibscbs_valores_trib_gtribregular_inner,
+                        'CSTReg',
+                        $this->std->infdps->ibscbs->valores->trib->gtribregular->cstreg,
+                        true
+                    );
+                    $this->dom->addChild(
+                        $ibscbs_valores_trib_gtribregular_inner,
+                        'cClassTribReg',
+                        $this->std->infdps->ibscbs->valores->trib->gtribregular->cclasstribreg,
+                        true
+                    );
+                }
 
-                $ibscbs_valores_trib_gdif_inner = $this->dom->createElement('gDif');
-                $ibscbs_valores_trib_inner->appendChild($ibscbs_valores_trib_gdif_inner);
-                $this->dom->addChild(
-                    $ibscbs_valores_trib_gdif_inner,
-                    'pDifUF',
-                    $this->std->infdps->ibscbs->valores->trib->gdif->pdifuf,
-                    true
-                );
-                $this->dom->addChild(
-                    $ibscbs_valores_trib_gdif_inner,
-                    'pDifMun',
-                    $this->std->infdps->ibscbs->valores->trib->gdif->pdifmun,
-                    true
-                );
-                $this->dom->addChild(
-                    $ibscbs_valores_trib_gdif_inner,
-                    'pDifCBS',
-                    $this->std->infdps->ibscbs->valores->trib->gdif->pdifcbs,
-                    true
-                );
+                if (isset($this->std->infdps->ibscbs->valores->trib->gdif)) {
+                    $ibscbs_valores_trib_gdif_inner = $this->dom->createElement('gDif');
+                    $ibscbs_valores_trib_inner->appendChild($ibscbs_valores_trib_gdif_inner);
+                    $this->dom->addChild(
+                        $ibscbs_valores_trib_gdif_inner,
+                        'pDifUF',
+                        $this->std->infdps->ibscbs->valores->trib->gdif->pdifuf,
+                        true
+                    );
+                    $this->dom->addChild(
+                        $ibscbs_valores_trib_gdif_inner,
+                        'pDifMun',
+                        $this->std->infdps->ibscbs->valores->trib->gdif->pdifmun,
+                        true
+                    );
+                    $this->dom->addChild(
+                        $ibscbs_valores_trib_gdif_inner,
+                        'pDifCBS',
+                        $this->std->infdps->ibscbs->valores->trib->gdif->pdifcbs,
+                        true
+                    );
+                }
 
                 //TODO Fazer grupo gReeRepRes
             }
