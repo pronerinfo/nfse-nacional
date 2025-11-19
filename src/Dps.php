@@ -498,12 +498,14 @@ class Dps implements DpsInterface
 
         $locprest_inner = $this->dom->createElement('locPrest');
         $serv_inner->appendChild($locprest_inner);
-        $this->dom->addChild(
-            $locprest_inner,
-            'cLocPrestacao',
-            $this->std->infdps->serv->locprest->clocprestacao,
-            true
-        );
+        if (isset($this->std->infdps->serv->locprest->clocprestacao)) {
+            $this->dom->addChild(
+                $locprest_inner,
+                'cLocPrestacao',
+                $this->std->infdps->serv->locprest->clocprestacao,
+                true
+            );
+        }
         if (isset($this->std->infdps->serv->locprest->cpaisprestacao)) {
             $this->dom->addChild(
                 $locprest_inner,
