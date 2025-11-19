@@ -568,8 +568,8 @@ class Dps implements DpsInterface
             $serv_inner->appendChild($infocompl_inner);
 
             $this->dom->addChild(
-                $cserv_inner,
-                'cTribNac',
+                $infocompl_inner,
+                'xInfComp',
                 $this->std->infdps->serv->infocompl->xinfcomp,
                 true
             );
